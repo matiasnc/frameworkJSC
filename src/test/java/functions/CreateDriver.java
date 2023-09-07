@@ -30,6 +30,7 @@ public class CreateDriver {
                       browser = pro.getProperty("browser");
                       os = pro.getProperty("os");
                       logLevel = pro.getProperty("logLevel");
+                      System.setProperty("webdriver.http.factory", "jdk-http-client");
               }catch (IOException e){
                       log.error("initConfig Error", e);
               }
