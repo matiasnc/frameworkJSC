@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
     features = "classpath:Features",
     glue = "classpath:stepsDefinition",
-    tags = "@testReport"
+    tags = "@test1"
 )
 
 public class TestRunner {

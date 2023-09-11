@@ -1,6 +1,21 @@
 {
-"Email": {
-  "GetFieldBy": "id",
-  "ValueToFind": "email"
+  "SignIn": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a"
+  },
+
+  "Email": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//input[@id='email']"
+  },
+
+  "Password": {
+    "GetFieldBy": "cssSelector",
+    "ValueToFind": "#passwd"
+  },
+
+  "MsgNoFeatured": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//*[@id=\"homefeatured\"]/li"
   }
 }
