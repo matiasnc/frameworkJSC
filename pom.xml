@@ -14,10 +14,17 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>19</maven.compiler.source>
     <maven.compiler.target>19</maven.compiler.target>
-    <cucumber.version>7.10.0</cucumber.version>
+    <cucumber.java>7.10.0</cucumber.java>
+    <junit.version>4.13.2</junit.version>
+    <junit-jupiter-api>5.9.0</junit-jupiter-api>
     <cucumber.junit>7.10.0</cucumber.junit>
     <selenium.java>4.8.0</selenium.java>
     <log4j.core>2.20.0</log4j.core>
+    <json-simple>1.1.1</json-simple>
+    <commons-io>2.13.0</commons-io>
+    <allure-cucumber7-jvm>2.24.0</allure-cucumber7-jvm>
+    <cucumber-picocontainer>7.13.0</cucumber-picocontainer>
+    <http-jdk-client>4.8.1</http-jdk-client>
     <aspectj.version>1.8.10</aspectj.version>
   </properties>
 
@@ -26,7 +33,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.2</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -34,7 +41,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.9.0</version>
+      <version>${junit-jupiter-api}</version>
       <scope>test</scope>
     </dependency>
 
@@ -42,7 +49,7 @@
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
-      <version>${cucumber.version}</version>
+      <version>${cucumber.java}</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
@@ -71,36 +78,36 @@
     <dependency>
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>
-      <version>1.1.1</version>
+      <version>${json-simple}</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.13.0</version>
+      <version>${commons-io}</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
     <dependency>
       <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-cucumber4-jvm</artifactId>
-      <version>2.24.0</version>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>${allure-cucumber7-jvm}</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-picocontainer</artifactId>
-      <version>7.13.0</version>
+      <version>${cucumber-picocontainer}</version>
       <scope>test</scope>
     </dependency>
 
-    <!--Evitar error 403 - https-jdk-client -->
+    <!--Error 403 - https-jdk-client -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-http-jdk-client</artifactId>
-      <version>4.8.1</version>
+      <version>${http-jdk-client}</version>
     </dependency>
 
   </dependencies>
@@ -122,7 +129,7 @@
       <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
-        <version>2.12.0</version> <!-- Use the latest version of Allure Maven plugin -->
+        <version>2.12.0</version>
         <executions>
           <execution>
             <goals>
@@ -132,9 +139,8 @@
           </execution>
         </executions>
         <configuration>
-          <propertiesFilePath>src/test/resources/allure.properties</propertiesFilePath>
-          <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
           <reportVersion>2.14.0</reportVersion>
+          <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
         </configuration>
       </plugin>
 
@@ -143,13 +149,8 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.1.2</version>
         <configuration>
-          <systemPropertyVariables>
-            <reportVersion>2.14.0</reportVersion>
-            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-          </systemPropertyVariables>
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-            -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
           </argLine>
         </configuration>
         <dependencies>

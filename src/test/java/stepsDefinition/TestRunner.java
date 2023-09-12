@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
     features = "classpath:Features",
     glue = "classpath:stepsDefinition",
-    tags = "@test1"
+    tags = "@test1",
+    plugin = {"pretty", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 )
 
 public class TestRunner {
